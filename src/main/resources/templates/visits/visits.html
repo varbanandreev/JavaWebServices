@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head"></head>
+<body style="background-color: #a9e39a;">
+<header th:replace="partials :: header"></header>
+<div class="col-6" style="max-width: 70%;left: 15%;">
+    <h3 th:unless="${visits} and ${visits.size()}">No visits found.</h3>
+    <table th:if="${visits.size()>0}" class="table table-hover">
+        <th>Id</th>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Visit Date</th>
+        <th>Diagnosis</th>
+        <th>Treatment</th>
+        <th>Sick Leave Start</th>
+        <th>Sick Leave Days</th>
+        <tr th:each="visit : ${visits}">
+            <td th:text="${visit.id}"></td>
+            <td th:text="${visit.patient.name}"></td>
+            <td th:text="${visit.doctor.name}"></td>
+            <td th:text="${#dates.format(visit.date, 'dd-MMM-yyyy')}"></td>
+            <td th:text="${visit.diagnosis}"></td>
+            <td th:text="${visit.treatment}"></td>
+            <td th:text="${#dates.format(visit.sickLeaveStart, 'dd-MMM-yyyy')}"></td>
+            <td th:text="${visit.sickLeaveDays}"></td>
+        </tr>
+    </table>
+</div>
+<footer th:replace="partials :: footer"></footer>
+</body>
+</html>

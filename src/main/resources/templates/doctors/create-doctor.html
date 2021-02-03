@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials :: head"></head>
-<body>
+<body style="background-color: #a9e39a;">
 <header th:replace="partials :: header"></header>
-<h4>Add Doctor</h4>
-<div class="col-6">
+<h4 style="text-align: center;">Add Doctor</h4>
+<div class="col-6" style="max-width: 70%;left: 15%;">
     <form action="#" th:action="@{/doctors/create}" th:object="${doctor}" method="post">
-        <div class="form-group">
+        <div class="form-group" style="max-width: 60%;left: 20%;position: relative;">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input class="form-control" type="text" th:field="*{name}" placeholder="Name" id="name">
                 <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
             </div>
             <div class="form-group">
-                <label form="identification">Identification</label>
+                <label for="identification">Identification</label>
                 <input class="form-control" type="text" th:field="*{identification}"
                        placeholder="Identification" id="identification">
                 <span class="text-danger" th:if="${#fields.hasErrors('identification')}"
@@ -28,14 +28,14 @@
                 </select>
             </div>
             <div class="form-group">
-                <label form="isgp">Is GP</label>
+                <label for="isgp">Is GP</label>
                 <select class="form-control" th:field="*{isGP}" id="isgp">
                     <option th:value="Yes" th:text="Yes"></option>
                     <option th:value="No" th:text="No"></option>
                 </select>
             </div>
+            <button type="submit" class="btn btn-primary">Save</button>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
     </form>
 </div>
 <footer th:replace="partials :: footer"></footer>

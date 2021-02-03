@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials :: head"></head>
-<body>
+<body style="background-color: #a9e39a;">
 <header th:replace="partials :: header"></header>
-<h4>Update patient details</h4>
-<div class="col-6">
-    <form action="#" th:action="@{/patients/update/{id}(id=${id})}" th:object="${patient}" method="post">
+<h4 style="text-align: center;">Update patient details</h4>
+<div class="col-6" style="max-width: 70%;left: 15%;">
+    <form action="#" th:action="@{/patients/update/{id}(id=${id})}" th:object="${patient}" method="post"
+          style="max-width: 60%;left: 20%;position: relative;">
         <div class="form-group">
             <label for="name">Name</label>
             <input class="form-control" type="text" th:field="*{name}" placeholder="Name" id="name">
             <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
         </div>
         <div class="form-group">
-            <label form="egn">EGN</label>
+            <label for="egn">EGN</label>
             <input class="form-control" type="text" th:field="*{EGN}"
                    placeholder="EGN" id="egn">
             <span class="text-danger" th:if="${#fields.hasErrors('EGN')}"
                   th:errors="*{EGN}">EGN Error</span>
         </div>
         <div class="form-group">
-            <label form="gp">GP</label>
+            <label for="gp">GP</label>
             <select class="form-control" th:field="${patient.GP}" id="gp">
                 <option value="">Select GP</option>
                 <option th:each="gp : ${gps}" th:value="${gp.id}"

@@ -48,6 +48,13 @@ public class VisitServiceImpl implements VisitService {
         visitRepository.deleteById(id);
     }
 
+    @Override
+    public List<VisitDTO> getVisitsByPatientName(String patientName) {
+        return visitRepository.findAllByPatientName(patientName).stream()
+                .map(this::convertToVisitDTO)
+                .collect(Collectors.toList());
+    }
+
     private VisitDTO convertToVisitDTO(Visit visit) {
         return modelMapper.map(visit, VisitDTO.class);
     }

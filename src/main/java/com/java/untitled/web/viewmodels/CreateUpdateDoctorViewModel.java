@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
-public class CreateUpdateDoctorModel {
+public class CreateUpdateDoctorViewModel {
 
     @NotBlank
     @Size(min = 5, max = 15, message = "Min 5, Max 15")

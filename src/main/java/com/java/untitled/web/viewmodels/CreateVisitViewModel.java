@@ -1,30 +1,20 @@
-package com.java.untitled.data.entity;
+package com.java.untitled.web.viewmodels;
 
+import com.java.untitled.data.entity.Doctor;
+import com.java.untitled.data.entity.Patient;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.*;
 import java.util.Date;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@Entity
-@Table(name = "visit")
-public class Visit extends BaseEntity {
+public class CreateVisitViewModel {
 
-    @ManyToOne
-    @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @ManyToOne
-    @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
     @NotNull
@@ -40,6 +30,7 @@ public class Visit extends BaseEntity {
     @Size(min = 5, max = 100, message = "Min 5, Max 100")
     private String treatment;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date sickLeaveStart;
 
     @Max(value = 30, message = "Max 30")

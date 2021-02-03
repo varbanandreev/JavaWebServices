@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head"></head>
+<body style="background-color: #a9e39a;">
+<header th:replace="partials :: header"></header>
+<h4 style="text-align: center;">Search Patient's Name</h4>
+<div class="col-6" style="max-width: 70%;left: 15%;">
+    <form action="#" th:action="@{/visits/patient}" method="get">
+        <div class="form-group" style="max-width: 60%;left: 20%;position: relative;">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" th:name="patientName" placeholder="Name" id="name">
+            </div>
+            <button type="submit" class="btn btn-primary">Find History</button>
+        </div>
+    </form>
+</div>
+<footer th:replace="partials :: footer"></footer>
+</body>
+</html>

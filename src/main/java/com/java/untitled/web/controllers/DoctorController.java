@@ -3,7 +3,7 @@ package com.java.untitled.web.controllers;
 import com.java.untitled.data.entity.Specialty;
 import com.java.untitled.dto.DoctorDTO;
 import com.java.untitled.services.DoctorService;
-import com.java.untitled.web.viewmodels.CreateUpdateDoctorModel;
+import com.java.untitled.web.viewmodels.CreateUpdateDoctorViewModel;
 import com.java.untitled.web.viewmodels.DoctorViewModel;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -35,13 +35,13 @@ public class DoctorController {
 
     @GetMapping("/create-doctor")
     public String createDoctorForm(Model model) {
-        model.addAttribute("doctor", new CreateUpdateDoctorModel());
+        model.addAttribute("doctor", new CreateUpdateDoctorViewModel());
         model.addAttribute("specialties", Specialty.values());
         return "/doctors/create-doctor";
     }
 
     @PostMapping("/create")
-    public String createDoctor(@Valid @ModelAttribute("doctor") CreateUpdateDoctorModel doctor,
+    public String createDoctor(@Valid @ModelAttribute("doctor") CreateUpdateDoctorViewModel doctor,
                                BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("specialties", Specialty.values());
@@ -54,13 +54,13 @@ public class DoctorController {
     @GetMapping("/edit-doctor/{id}")
     public String editDoctorForm(Model model, @PathVariable Long id) {
         model.addAttribute("doctor", modelMapper.map(doctorService.get(id),
-                CreateUpdateDoctorModel.class));
+                CreateUpdateDoctorViewModel.class));
         model.addAttribute("specialties", Specialty.values());
         return "/doctors/edit-doctor";
     }
 
     @PostMapping("/update/{id}")
-    public String updateDoctor(@PathVariable long id, @Valid @ModelAttribute("doctor") CreateUpdateDoctorModel doctor,
+    public String updateDoctor(@PathVariable long id, @Valid @ModelAttribute("doctor") CreateUpdateDoctorViewModel doctor,
                                BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("specialties", Specialty.values());

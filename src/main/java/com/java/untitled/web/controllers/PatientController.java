@@ -3,7 +3,7 @@ package com.java.untitled.web.controllers;
 import com.java.untitled.dto.PatientDTO;
 import com.java.untitled.services.DoctorService;
 import com.java.untitled.services.PatientService;
-import com.java.untitled.web.viewmodels.CreateUpdatePatientModel;
+import com.java.untitled.web.viewmodels.CreateUpdatePatientViewModel;
 import com.java.untitled.web.viewmodels.PatientViewModel;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -36,13 +36,13 @@ public class PatientController {
 
     @GetMapping("/create-patient")
     public String createPatientForm(Model model) {
-        model.addAttribute("patient", new CreateUpdatePatientModel());
+        model.addAttribute("patient", new CreateUpdatePatientViewModel());
         model.addAttribute("gps", doctorService.getGps());
         return "/patients/create-patient";
     }
 
     @PostMapping("/create")
-    public String createPatient(@Valid @ModelAttribute("patient") CreateUpdatePatientModel patient,
+    public String createPatient(@Valid @ModelAttribute("patient") CreateUpdatePatientViewModel patient,
                                 BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("gps", doctorService.getGps());
@@ -55,13 +55,13 @@ public class PatientController {
     @GetMapping("/edit-patient/{id}")
     public String editPatientForm(Model model, @PathVariable Long id) {
         model.addAttribute("patient", modelMapper.map(patientService.get(id),
-                CreateUpdatePatientModel.class));
+                CreateUpdatePatientViewModel.class));
         model.addAttribute("gps", doctorService.getGps());
         return "/patients/edit-patient";
     }
 
     @PostMapping("/update/{id}")
-    public String updatePatient(@PathVariable long id, @Valid @ModelAttribute("patient") CreateUpdatePatientModel patient,
+    public String updatePatient(@PathVariable long id, @Valid @ModelAttribute("patient") CreateUpdatePatientViewModel patient,
                                 BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("gps", doctorService.getGps());

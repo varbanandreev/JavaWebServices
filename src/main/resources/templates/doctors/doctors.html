@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials :: head"></head>
-<body>
+<body style="background-color: #a9e39a;">
 <header th:replace="partials :: header"></header>
-<div class=" col-6">
+<div class="col-6" style="max-width: 70%;left: 15%;">
     <h3 th:unless="${doctors} and ${doctors.size()}">No doctors found.</h3>
     <table th:if="${doctors.size()>0}" class="table table-hover">
         <th>Id</th>
