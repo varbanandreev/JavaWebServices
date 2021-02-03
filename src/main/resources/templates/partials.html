@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:partial="head">
+    <title>Hospital Management</title>
+    <meta charset="UTF-8">
+    <link href="/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<header th:partial="header">
+    <h1>Hospital Management System</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" th:partial="navigation">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/doctors">Doctors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/doctors/create-doctor">Add Doctor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/patients">Patients</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/patients/create-patient">Add Patient</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<footer page-footer font-small>
+    <div class="footer-copyright text-center py-3">© 2021 Copyright:
+        <a href="#"> Hospital Management System</a>
+    </div>
+</footer>
+
+</html>

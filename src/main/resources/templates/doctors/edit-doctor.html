@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head"></head>
+<body>
+<header th:replace="partials :: header"></header>
+<h4>Update doctor details</h4>
+<div class="col-6">
+    <form action="#" th:action="@{/doctors/update/{id}(id=${id})}" th:object="${doctor}" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" type="text" th:field="*{name}" placeholder="Name" id="name">
+            <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
+        </div>
+        <div class="form-group">
+            <label form="identification">Identification</label>
+            <input class="form-control" type="text" th:field="*{identification}"
+                   placeholder="Identification" id="identification">
+            <span class="text-danger" th:if="${#fields.hasErrors('identification')}"
+                  th:errors="*{identification}">Identification Error</span>
+        </div>
+        <div class="form-group">
+            <label for="specialty">Specialty</label>
+            <select class="form-control" th:field="${doctor.specialty}" id="specialty">
+                <option value="">Select Specialty</option>
+                <option th:each="specialty : ${specialties}" th:value="${specialty}"
+                        th:text="${specialty}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label form="isgp">Is GP</label>
+            <select class="form-control" th:field="*{isGP}" id="isgp">
+                <option th:value="Yes" th:text="Yes"></option>
+                <option th:value="No" th:text="No"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+<footer th:replace="partials :: footer"></footer>
+</body>
+</html>

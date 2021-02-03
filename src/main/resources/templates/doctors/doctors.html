@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head"></head>
+<body>
+<header th:replace="partials :: header"></header>
+<div class=" col-6">
+    <h3 th:unless="${doctors} and ${doctors.size()}">No doctors found.</h3>
+    <table th:if="${doctors.size()>0}" class="table table-hover">
+        <th>Id</th>
+        <th>Name</th>
+        <th>Identification</th>
+        <th>Specialty</th>
+        <th>Is GP</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <tr th:each="doctor : ${doctors}">
+            <td th:text="${doctor.id}"></td>
+            <td th:text="${doctor.name}"></td>
+            <td th:text="${doctor.identification}"></td>
+            <td th:text="${doctor.specialty}"></td>
+            <td th:text="${doctor.isGP}"></td>
+            <td><a class="btn btn-info" th:href="@{'/doctors/edit-doctor/'+${doctor.id}}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/doctors/delete/'+${doctor.id}}">Delete</a></td>
+        </tr>
+    </table>
+</div>
+<footer th:replace="partials :: footer"></footer>
+</body>
+</html>

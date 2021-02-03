@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head"></head>
+<body>
+<header th:replace="partials :: header"></header>
+<div class=" col-6">
+    <h3 th:unless="${patients} and ${patients.size()}">No patients found.</h3>
+    <table th:if="${patients.size()>0}" class="table table-hover">
+        <th>Id</th>
+        <th>Name</th>
+        <th>EGN</th>
+        <th>GP</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.id}"></td>
+            <td th:text="${patient.name}"></td>
+            <td th:text="${patient.EGN}"></td>
+            <td th:text="${patient.GP.name}"></td>
+            <td><a class="btn btn-info" th:href="@{'/patients/edit-patient/'+${patient.id}}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/patients/delete/'+${patient.id}}">Delete</a></td>
+        </tr>
+    </table>
+</div>
+<footer th:replace="partials :: footer"></footer>
+</body>
+</html>
